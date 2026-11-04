@@ -1,171 +1,260 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Project Title</title>
-<meta charset="utf-8">
-<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
-<style> @-ms-viewport { width: device-width; } </style>
-<link rel="stylesheet" href="vendor/reset.min.css">
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+
+  <title>CIS 3D World | Campus Explorer</title>
+
+  <meta name="description" content="Explore CIS through an interactive 360-degree virtual campus tour.">
+
+  <link rel="stylesheet" href="vendor/reset.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* CIS 3D World enhancements */
+
+    body {
+      background: #101827;
+    }
+
+    #titleBar {
+      background: linear-gradient(135deg, #101827, #172b46);
+      border-bottom: 2px solid #38bdf8;
+    }
+
+    #titleBar h1 {
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    #sceneList {
+      background: rgba(12, 23, 40, 0.96);
+      border-right: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    #sceneList .scenes {
+      padding: 8px;
+    }
+
+    #sceneList .scene {
+      display: block;
+      text-decoration: none;
+      border-radius: 8px;
+      margin: 5px 0;
+      transition: background 0.2s ease;
+    }
+
+    #sceneList .scene:hover {
+      background: rgba(56, 189, 248, 0.16);
+    }
+
+    #sceneList .scene li {
+      padding: 11px 12px;
+      font-size: 13px;
+      color: #e2e8f0;
+      border-left: 3px solid transparent;
+    }
+
+    #sceneList .scene:hover li {
+      color: #38bdf8;
+      border-left-color: #38bdf8;
+    }
+
+    #sceneList .scene.current {
+      background: rgba(56, 189, 248, 0.18);
+    }
+
+    #sceneList .scene.current li {
+      color: #7dd3fc;
+      border-left-color: #38bdf8;
+      font-weight: bold;
+    }
+
+    #titleBar h1::before {
+      content: "CIS 3D WORLD  /  ";
+      color: #38bdf8;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+  </style>
 </head>
-<body class="multiple-scenes ">
 
-<div id="pano"></div>
+<body class="multiple-scenes">
 
-<div id="sceneList">
-  <ul class="scenes">
-    
+  <!-- Main 360-degree panorama viewer -->
+  <div id="pano"></div>
+
+  <!-- Campus Explorer Sidebar -->
+  <div id="sceneList">
+    <ul class="scenes">
+
       <a href="javascript:void(0)" class="scene" data-id="0-img_20261020_125357_00_merged">
-        <li class="text">IMG_20261020_125357_00_merged</li>
+        <li class="text">🎵 Music Room</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="1-img_20261020_130240_00_merged">
-        <li class="text">IMG_20261020_130240_00_merged</li>
+        <li class="text">🎼 Music Rehearsal Hall</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="2-img_20261021_091823_00_merged">
-        <li class="text">IMG_20261021_091823_00_merged</li>
+        <li class="text">📚 Library Service Desk</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="3-img_20261021_091944_00_merged">
-        <li class="text">IMG_20261021_091944_00_merged</li>
+        <li class="text">📖 Children's Library</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="4-img_20261021_092110_00_merged">
-        <li class="text">IMG_20261021_092110_00_merged</li>
+        <li class="text">🏫 Campus View 01</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="5-img_20261021_092249_00_merged">
-        <li class="text">IMG_20261021_092249_00_merged</li>
+        <li class="text">🏫 Campus View 02</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="6-img_20261021_094220_00_merged">
-        <li class="text">IMG_20261021_094220_00_merged</li>
+        <li class="text">🍽️ School Dining Hall</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="7-img_20261021_094404_00_merged">
-        <li class="text">IMG_20261021_094404_00_merged</li>
+        <li class="text">🍴 Dining Hall - Alternate View</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="8-img_20261021_094709_00_merged">
-        <li class="text">IMG_20261021_094709_00_merged</li>
+        <li class="text">🏫 Campus View 03</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="9-img_20261021_094832_00_merged">
-        <li class="text">IMG_20261021_094832_00_merged</li>
+        <li class="text">🏫 Campus View 04</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="10-img_20261021_095211_00_merged">
-        <li class="text">IMG_20261021_095211_00_merged</li>
+        <li class="text">🏫 Campus View 05</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="11-img_20261021_095534_00_merged">
-        <li class="text">IMG_20261021_095534_00_merged</li>
+        <li class="text">🏫 Campus View 06</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="12-img_20261021_131150_00_merged">
-        <li class="text">IMG_20261021_131150_00_merged</li>
+        <li class="text">🏫 Campus View 07</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="13-img_20261021_133216_00_merged">
-        <li class="text">IMG_20261021_133216_00_merged</li>
+        <li class="text">🏫 Campus View 08</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="14-img_20261021_134737_00_merged">
-        <li class="text">IMG_20261021_134737_00_merged</li>
+        <li class="text">🏫 Campus View 09</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="15-img_20261023_110919_00_merged">
-        <li class="text">IMG_20261023_110919_00_merged</li>
+        <li class="text">🏫 Campus View 10</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="16-img_20261023_111412_00_merged">
-        <li class="text">IMG_20261023_111412_00_merged</li>
+        <li class="text">🏫 Campus View 11</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="17-img_20261023_111850_00_merged">
-        <li class="text">IMG_20261023_111850_00_merged</li>
+        <li class="text">🏫 Campus View 12</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="18-img_20261023_112116_00_merged">
-        <li class="text">IMG_20261023_112116_00_merged</li>
+        <li class="text">🏫 Campus View 13</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="19-img_20261023_112306_00_merged">
-        <li class="text">IMG_20261023_112306_00_merged</li>
+        <li class="text">🏫 Campus View 14</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="20-img_20261023_112343_00_merged">
-        <li class="text">IMG_20261023_112343_00_merged</li>
+        <li class="text">🏫 Campus View 15</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="21-img_20261023_112436_00_merged">
-        <li class="text">IMG_20261023_112436_00_merged</li>
+        <li class="text">🏫 Campus View 16</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="22-img_20261023_112912_00_merged">
-        <li class="text">IMG_20261023_112912_00_merged</li>
+        <li class="text">🏫 Campus View 17</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="23-img_20261023_113016_00_merged">
-        <li class="text">IMG_20261023_113016_00_merged</li>
+        <li class="text">🏫 Campus View 18</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="24-img_20261023_113123_00_merged">
-        <li class="text">IMG_20261023_113123_00_merged</li>
+        <li class="text">🏫 Campus View 19</li>
       </a>
-    
+
       <a href="javascript:void(0)" class="scene" data-id="25-img_20261023_113438_00_merged">
-        <li class="text">IMG_20261023_113438_00_merged</li>
+        <li class="text">🏫 Campus View 20</li>
       </a>
-    
-  </ul>
-</div>
 
-<div id="titleBar">
-  <h1 class="sceneName"></h1>
-</div>
+    </ul>
+  </div>
 
-<a href="javascript:void(0)" id="autorotateToggle">
-  <img class="icon off" src="img/play.png">
-  <img class="icon on" src="img/pause.png">
-</a>
+  <!-- Current Room Title -->
+  <div id="titleBar">
+    <h1 class="sceneName"></h1>
+  </div>
 
-<a href="javascript:void(0)" id="fullscreenToggle">
-  <img class="icon off" src="img/fullscreen.png">
-  <img class="icon on" src="img/windowed.png">
-</a>
+  <!-- Autorotation -->
+  <a href="javascript:void(0)" id="autorotateToggle">
+    <img class="icon off" src="img/play.png">
+    <img class="icon on" src="img/pause.png">
+  </a>
 
-<a href="javascript:void(0)" id="sceneListToggle">
-  <img class="icon off" src="img/expand.png">
-  <img class="icon on" src="img/collapse.png">
-</a>
+  <!-- Fullscreen -->
+  <a href="javascript:void(0)" id="fullscreenToggle">
+    <img class="icon off" src="img/fullscreen.png">
+    <img class="icon on" src="img/windowed.png">
+  </a>
 
-<a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
-  <img class="icon" src="img/up.png">
-</a>
-<a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
-  <img class="icon" src="img/down.png">
-</a>
-<a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
-  <img class="icon" src="img/left.png">
-</a>
-<a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
-  <img class="icon" src="img/right.png">
-</a>
-<a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
-  <img class="icon" src="img/plus.png">
-</a>
-<a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
-  <img class="icon" src="img/minus.png">
-</a>
+  <!-- Sidebar Toggle -->
+  <a href="javascript:void(0)" id="sceneListToggle">
+    <img class="icon off" src="img/expand.png">
+    <img class="icon on" src="img/collapse.png">
+  </a>
 
-<script src="vendor/screenfull.min.js" ></script>
-<script src="vendor/bowser.min.js" ></script>
-<script src="vendor/marzipano.js" ></script>
+  <!-- View Controls -->
+  <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+    <img class="icon" src="img/up.png">
+  </a>
 
-<script src="data.js"></script>
-<script src="index.js"></script>
+  <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+    <img class="icon" src="img/down.png">
+  </a>
+
+  <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+    <img class="icon" src="img/left.png">
+  </a>
+
+  <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+    <img class="icon" src="img/right.png">
+  </a>
+
+  <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+    <img class="icon" src="img/plus.png">
+  </a>
+
+  <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+    <img class="icon" src="img/minus.png">
+  </a>
+
+  <!-- Marzipano Dependencies -->
+  <script src="vendor/screenfull.min.js"></script>
+  <script src="vendor/bowser.min.js"></script>
+  <script src="vendor/marzipano.js"></script>
+
+  <!-- Tour Data and Application -->
+  <script src="data.js"></script>
+  <script src="index.js"></script>
 
 </body>
 </html>
